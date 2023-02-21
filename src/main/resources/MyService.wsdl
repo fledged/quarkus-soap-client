@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.ws.fluegge.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="MyServiceImpl" targetNamespace="http://service.ws.fluegge.org/">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.ws.fluegge.org/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.ws.fluegge.org/">
+  <xsd:element name="add" type="tns:add"/>
+  <xsd:complexType name="add">
+    <xsd:sequence>
+      <xsd:element name="arg0" type="xsd:int"/>
+      <xsd:element name="arg1" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="addResponse" type="tns:addResponse"/>
+  <xsd:complexType name="addResponse">
+    <xsd:sequence>
+      <xsd:element name="return" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="date" type="tns:date"/>
+  <xsd:complexType name="date">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="dateResponse" type="tns:dateResponse"/>
+  <xsd:complexType name="dateResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="return" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="add">
+    <wsdl:part element="tns:add" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="date">
+    <wsdl:part element="tns:date" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResponse">
+    <wsdl:part element="tns:addResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="dateResponse">
+    <wsdl:part element="tns:dateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MyService">
+    <wsdl:operation name="add">
+      <wsdl:input message="tns:add" name="add">
+    </wsdl:input>
+      <wsdl:output message="tns:addResponse" name="addResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="date">
+      <wsdl:input message="tns:date" name="date">
+    </wsdl:input>
+      <wsdl:output message="tns:dateResponse" name="dateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MyServiceImplSoapBinding" type="tns:MyService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="add">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="add">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="date">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="date">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="dateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MyServiceImpl">
+    <wsdl:port binding="tns:MyServiceImplSoapBinding" name="MyServicePort">
+      <soap:address location="http://localhost:8080/soap/myservice"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
